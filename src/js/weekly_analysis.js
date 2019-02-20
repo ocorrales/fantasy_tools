@@ -74,22 +74,22 @@ function calculateTotals(players){
 
         if(!isBlank(player.fgTotals) && !isEmpty(player.fgTotals)){
             var values = player.fgTotals.split('/');
-            totals.fgMade = totals.fgMade + parseFloat(values[0]);
-            totals.fgAttemp = totals.fgAttemp + parseFloat(values[1]);
+            totals.fgMade = totals.fgMade + (player.games * parseFloat(values[0]));
+            totals.fgAttemp = totals.fgAttemp + (player.games * parseFloat(values[1]));
         }
 
         if(!isBlank(player.ftTotals) && !isEmpty(player.ftTotals)){
             var values = player.ftTotals.split('/');
-            totals.ftMade = totals.ftMade + parseFloat(values[0]);
-            totals.ftAttemp = totals.ftAttemp + parseFloat(values[1]);
+            totals.ftMade = totals.ftMade + (player.games * parseFloat(values[0]));
+            totals.ftAttemp = totals.ftAttemp + (player.games * parseFloat(values[1]));
         }
 
     });
 
-    totals.fgTotals = totals.fgMade + '/' + totals.fgAttemp;
+    totals.fgTotals = totals.fgMade.toFixed(1) + '/' + totals.fgAttemp.toFixed(1);
     totals.fgPercent = (totals.fgMade/totals.fgAttemp).toFixed(3);
 
-    totals.ftTotals = totals.ftMade + '/' + totals.ftAttemp;
+    totals.ftTotals = totals.ftMade.toFixed(1) + '/' + totals.ftAttemp.toFixed(1);
     totals.ftPercent = (totals.ftMade/totals.ftAttemp).toFixed(3);
 
     return totals;
