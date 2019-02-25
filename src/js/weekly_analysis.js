@@ -166,3 +166,32 @@ function isEmpty(str) {
 function isBlank(str) {
     return (!str || /^\s*$/.test(str));
 }
+
+function hideShow(containerId){
+    $(containerId).toggle();
+}
+
+function addNewPlayers(isForMyTeam){
+    var lines = document.getElementById('myTeamAddNewPlayer').value.split('\n');
+    for(var i = lines.length - 1;i >= 0 ;i--){
+        var value = lines[i];
+        rawData = getData($.trim(value));
+        player = {
+            name: rawData[0],
+            fgTotals: rawData[1],
+            fgPercent: rawData[2],
+            ftTotals: rawData[3],
+            ftPercent: rawData[4],
+            triples: rawData[5],
+            points: rawData[6],
+            rebounds: rawData[7],
+            assists: rawData[8],
+            steals: rawData[9],
+            blocks: rawData[10],
+            tos: rawData[11],
+            games: 1
+        }
+        players.push(player);
+    }
+    feedTable('#myTeamSaved', players)
+}

@@ -16,8 +16,16 @@
 </head>
 
 <body>
-  <textarea id="values" rows="15" cols="120"></textarea>
-  <button onclick="injestData()">Ingest</button>
+  <div id="myTeamContainer">
+    <textarea id="values" rows="15" cols="160"></textarea><br>
+    <button onclick="injestData()">Ingest</button>
+  </div>
+  <div id="myTeamAddNewPlayerContainer">
+<textarea id="myTeamAddNewPlayer" rows="2" cols="160"></textarea>
+    <br>
+    <button onclick='addNewPlayers(true)'>Add player(s)</button>
+  </div>
+  <button onclick='hideShow("#myTeamContainer")'>Hide/Show Injest Form</button>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="js/weekly_analysis.js"></script>
 
