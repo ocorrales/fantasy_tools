@@ -17,18 +17,15 @@
 
 <body>
   <div id="myTeamContainer">
-    <textarea id="values" rows="15" cols="160"></textarea><br>
+    <textarea id="myTeamvalues" rows="15" cols="160"></textarea><br>
     <button onclick="injestData()">Ingest</button>
   </div>
   <div id="myTeamAddNewPlayerContainer">
-<textarea id="myTeamAddNewPlayer" rows="2" cols="160"></textarea>
+  <textarea id="myTeamAddNewPlayer" rows="2" cols="160"></textarea>
     <br>
     <button onclick='addNewPlayers(true)'>Add player(s)</button>
   </div>
   <button onclick='hideShow("#myTeamContainer")'>Hide/Show Injest Form</button>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="js/weekly_analysis.js"></script>
-
   <table id="myTeamSaved" class="teamSaved">
     <tbody>
     <tr>
@@ -48,6 +45,41 @@
     </tr>
     </tbody>
   </table>
+
+  <!--OTHER TEAM-->
+  <table id="otherTeamSaved" class="teamSaved">
+    <tbody>
+    <tr>
+      <th class="playerName">Player name</th>
+      <th class="games">Games</th>
+      <th class="fgTotals">FGM/A</th>
+      <th class="fgPercent">FG %</th>
+      <th class="ftTotals">FTM/A</th>
+      <th class="ftPercent">FT %</th>
+      <th class="triples">3PTM</th>
+      <th class="points">PTS</th>
+      <th class="rebounds">REB</th>
+      <th class="assists">AST</th>
+      <th class="steals">ST</th>
+      <th class="blocks">BLK</th>
+      <th class="tos">TO</th>
+    </tr>
+    </tbody>
+  </table>
+
+  <div id="otherTeamContainer">
+    <textarea id="otherTeamvalues" rows="15" cols="160"></textarea><br>
+    <button onclick="injestData(false)">Ingest</button>
+  </div>
+  <div id="otherTeamAddNewPlayerContainer">
+    <textarea id="otherTeamAddNewPlayer" rows="2" cols="160"></textarea>
+    <br>
+    <button onclick='addNewPlayers(false)'>Add player(s)</button>
+  </div>
+  <button onclick='hideShow("#otherTeamContainer")'>Hide/Show Injest Form</button>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/weekly_analysis.js"></script>
 </body>
 
 </html>

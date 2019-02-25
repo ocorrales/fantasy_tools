@@ -1,7 +1,10 @@
-var players = [];
+var myPlayers = [];
+var otherPlayers = [];
 
-function injestData(){
-    var lines = document.getElementById('values').value.split('\n');
+function injestData(isMyTeam = true){
+    var containerDataId = isMyTeam ? 'myTeamvalues' : 'otherTeamvalues';
+    var playersTableId  = isMyTeam ? 'myTeamSaved' : 'otherTeamSaved';
+    var lines = document.getElementById(containerDataId).value.split('\n');
     for(var i = lines.length - 1;i >= 0 ;i--){
         var value = lines[i];
         rawData = getData($.trim(value));
@@ -20,9 +23,9 @@ function injestData(){
             tos: rawData[11],
             games: 1
         }
-        players.push(player);
+        isMyTeam ? myPlayers.push(player) : otherPlayers.push(player)
     }
-    feedTable('#myTeamSaved', players)
+    feedTable('#'+playersTableId, isMyTeam ? myPlayers: otherPlayers, isMyTeam);
 }
 
 /**
@@ -30,19 +33,29 @@ function injestData(){
  * @param tableId css id like '#tableId'
  * @param players an array representation of players
  */
-function feedTable(tableId, players){
+function feedTable(tableId, playerList, isMyTeam=true){
     $( tableId +" tbody tr" ).each( function(){
         this.parentNode.removeChild( this );
     });
 
-    $.each(players, function(index, player){
-        addElementToTable(tableId, player, false);
-    })
-    totals = calculateTotals(players);
-    addElementToTable(tableId,totals, true)
+    totals = calculateTotals(playerList);
+
+    if(isMyTeam){
+        $.each(playerList, function(index, player){
+            addElementToTable(tableId, player, false);
+        })
+        addElementToTable(tableId,totals, true)
+    }else{
+        addElementToTable(tableId,totals, true)
+        $.each(playerList, function(index, player){
+            addElementToTable(tableId, player, false);
+        })
+    }
+
+
 }
 
-function calculateTotals(players){
+function calculateTotals(playerList){
     totals = {
         name: 'TOTALS',
         fgTotals: '',
@@ -62,7 +75,7 @@ function calculateTotals(players){
         tos: 0,
         games: 0
     }
-    $.each(players, function( index, player ) {
+    $.each(playerList, function( index, player ) {
         totals.triples += player.games * player.triples;
         totals.points  += player.games * player.points;
         totals.rebounds += player.games * player.rebounds;
@@ -95,6 +108,7 @@ function calculateTotals(players){
     return totals;
 
 }
+
 function getData(value){
     return value.split("\t");
 }
@@ -111,7 +125,7 @@ function addElementToTable(tableId, player, isTotal){
     $(tableId).find('tbody')
         .append($(trGeneratedId)
             .append($('<td class="playerName">')
-                .append(player.name)
+                .append(player.name.substr(0,40))
             ).append($('<td class="games">')
                 .append(player.games + buttons)
             ).append($('<td class="fgTotals">')
@@ -140,23 +154,44 @@ function addElementToTable(tableId, player, isTotal){
         );
 }
 
-function addGameToPlayer(playerName){
-    $.each(players, function (index, player) {
-        if($.trim(player.name) == $.trim(playerName)){
-            player.games ++;
-        }
-    })
-    feedTable('#myTeamSaved', players)
+function addGameToPlayer(playerName, isMyTeam=true){
+    var playersTableId  = isMyTeam ? '#myTeamSaved' : '#otherTeamSaved';
+
+    if(isMyTeam){
+        $.each(myPlayers, function (index, player) {
+            if($.trim(player.name) == $.trim(playerName)){
+                player.games ++;
+            }
+        })
+    }else{
+        $.each(otherPlayers, function (index, player) {
+            if($.trim(player.name) == $.trim(playerName)){
+                player.games ++;
+            }
+        })
+    }
+    feedTable(playersTableId, isMyTeam ? myPlayers: otherPlayers)
 }
 
-function removeGameFromPlayer(playerName){
-    $.each(players, function (index, player) {
-        if(player.name == playerName){
-            if(player.games > 0)
-                player.games --;
-        }
-    })
-    feedTable('#myTeamSaved', players)
+function removeGameFromPlayer(playerName, isMyTeam=true){
+    var playersTableId  = isMyTeam ? '#myTeamSaved' : '#otherTeamSaved';
+
+    if(isMyTeam){
+        $.each(myPlayers, function (index, player) {
+            if($.trim(player.name) == $.trim(playerName)){
+                if(player.games > 0)
+                    player.games --;
+            }
+        })
+    }else{
+        $.each(otherPlayers, function (index, player) {
+            if($.trim(player.name) == $.trim(playerName)){
+                if(player.games > 0)
+                    player.games --;
+            }
+        })
+    }
+    feedTable(playersTableId, isMyTeam ? myPlayers: otherPlayers)
 }
 
 function isEmpty(str) {
@@ -171,8 +206,10 @@ function hideShow(containerId){
     $(containerId).toggle();
 }
 
-function addNewPlayers(isForMyTeam){
-    var lines = document.getElementById('myTeamAddNewPlayer').value.split('\n');
+function addNewPlayers(isMyTeam=true){
+    var playersTableId  = isMyTeam ? '#myTeamSaved' : '#otherTeamSaved';
+    var newPlayerContainerId  = isMyTeam ? 'myTeamAddNewPlayer' : 'otherTeamAddNewPlayer';
+    var lines = document.getElementById(newPlayerContainerId).value.split('\n');
     for(var i = lines.length - 1;i >= 0 ;i--){
         var value = lines[i];
         rawData = getData($.trim(value));
@@ -191,7 +228,8 @@ function addNewPlayers(isForMyTeam){
             tos: rawData[11],
             games: 1
         }
-        players.push(player);
+        isMyTeam ? myPlayers.push(player) : otherPlayers.push(player);
     }
-    feedTable('#myTeamSaved', players)
+    feedTable(playersTableId, isMyTeam ? myPlayers: otherPlayers, isMyTeam)
 }
+

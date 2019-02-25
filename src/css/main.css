@@ -282,6 +282,145 @@ textarea {
     padding: 10px;
     text-align: right;
 }
+.teamSaved tr td.playerName{
+    width: 260px;
+}
+.teamSaved tr td.games
+{
+    width: 62px;
+}
+.teamSaved tr td.fgTotals
+{
+    width: 88px;
+}
+
+.teamSaved tr td.fgPercent
+{
+    width: 50px;
+}
+
+.teamSaved tr td.ftTotals
+{
+    width: 88px;
+}
+
+.teamSaved tr td.ftPercent
+{
+    width: 50px;
+}
+
+.teamSaved tr td.triples
+{
+    width: 31px;
+}
+
+.teamSaved tr td.points
+{
+    width: 31px;
+}
+
+.teamSaved tr td.rebounds
+{
+    width: 31px;
+}
+
+.teamSaved tr td.assists
+{
+    width: 31px;
+}
+
+.teamSaved tr td.steals
+{
+    width: 31px;
+}
+
+.teamSaved tr td.blocks
+{
+    width: 31px;
+}
+
+.teamSaved tr td.tos
+{
+    width: 31px;
+}
+
+
+
+
+
+
+
+
+.teamSaved tr th.playerName{
+    width: 260px;
+}
+.teamSaved tr th.games
+{
+    width: 62px;
+}
+.teamSaved tr th.fgTotals
+{
+    width: 88px;
+}
+
+.teamSaved tr th.fgPercent
+{
+    width: 50px;
+}
+
+.teamSaved tr th.ftTotals
+{
+    width: 88px;
+}
+
+.teamSaved tr th.ftPercent
+{
+    width: 50px;
+}
+
+
+
+.teamSaved tr th.triples
+{
+    width: 31px;
+}
+
+.teamSaved tr th.points
+{
+    width: 31px;
+}
+
+.teamSaved tr th.rebounds
+{
+    width: 31px;
+}
+
+.teamSaved tr th.assists
+{
+    width: 31px;
+}
+
+.teamSaved tr th.steals
+{
+    width: 31px;
+}
+
+.teamSaved tr th.blocks
+{
+    width: 31px;
+}
+
+.teamSaved tr th.tos
+{
+    width: 31px;
+}
+
+
+
+
+
+
+
 .teamSaved tr{
     line-height: 2px;
 }
