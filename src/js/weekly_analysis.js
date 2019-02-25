@@ -42,13 +42,13 @@ function feedTable(tableId, playerList, isMyTeam=true){
 
     if(isMyTeam){
         $.each(playerList, function(index, player){
-            addElementToTable(tableId, player, false);
+            addElementToTable(tableId, player, false, isMyTeam);
         })
-        addElementToTable(tableId,totals, true)
+        addElementToTable(tableId,totals, true, isMyTeam)
     }else{
-        addElementToTable(tableId,totals, true)
+        addElementToTable(tableId,totals, true, isMyTeam)
         $.each(playerList, function(index, player){
-            addElementToTable(tableId, player, false);
+            addElementToTable(tableId, player, false, isMyTeam);
         })
     }
 
@@ -118,10 +118,16 @@ function getData(value){
  * @param tableId css id like '#tableId'
  * @param player object representation of the player
  */
-function addElementToTable(tableId, player, isTotal){
+function addElementToTable(tableId, player, isTotal, isMyTeam = true){
+    //+isMyTeam ? "true" : "false"
     var totalClass = isTotal ? "total" : ""
     var trGeneratedId = '<tr id="'+player.name+'" class="'+totalClass+'">'
-    var buttons = isTotal ? '' : '<button onclick="addGameToPlayer(\''+player.name+'\')">+</button><button onclick="removeGameFromPlayer(\''+player.name+'\')">-</button>'
+    var buttons = isTotal ? '' : '<button onclick="addGameToPlayer(\''+player.name+'\',true)">+</button><button onclick="removeGameFromPlayer(\''+player.name+'\',true)">-</button>'
+
+
+    if(!isMyTeam)
+        buttons = isTotal ? '' : '<button onclick="addGameToPlayer(\''+player.name+'\',false)">+</button><button onclick="removeGameFromPlayer(\''+player.name+'\',false)">-</button>'
+
     $(tableId).find('tbody')
         .append($(trGeneratedId)
             .append($('<td class="playerName">')
@@ -170,7 +176,7 @@ function addGameToPlayer(playerName, isMyTeam=true){
             }
         })
     }
-    feedTable(playersTableId, isMyTeam ? myPlayers: otherPlayers)
+    feedTable(playersTableId, isMyTeam ? myPlayers: otherPlayers, isMyTeam)
 }
 
 function removeGameFromPlayer(playerName, isMyTeam=true){
@@ -191,7 +197,7 @@ function removeGameFromPlayer(playerName, isMyTeam=true){
             }
         })
     }
-    feedTable(playersTableId, isMyTeam ? myPlayers: otherPlayers)
+    feedTable(playersTableId, isMyTeam ? myPlayers: otherPlayers, isMyTeam)
 }
 
 function isEmpty(str) {
