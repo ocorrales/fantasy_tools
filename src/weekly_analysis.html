@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Weekly analisis</title>
+  <title>Weekly analysis</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,11 +17,23 @@
 
 <body>
   <div id="myTeamContainer">
-    <textarea id="myTeamvalues" rows="15" cols="160"></textarea><br>
+    <textarea id="myTeamvalues" rows="15" cols="177">Ben Simmons Phi - PG,SF	7.5/13.8	0.539	4.2/6.5	0.639	0	19.1	6.6	5.9	1.4	0.5	3.9
+Patrick Beverley LAC - PG,SG	2.9/6.0	0.486	1.8/1.8	0.955	1.4	9	6.6	4.3	1.3	1	1.3
+Shai Gilgeous-Alexander LAC - PG,SG	3.9/8.1	0.485	2.6/3.3	0.775	0.5	10.9	2.8	3.8	1.3	0.5	2.1
+Kevin Durant GS - SF,PF	10.1/18.5	0.544	5.2/6.3	0.826	1.5	26.8	5.6	5.2	0.5	1.4	2.1
+Al Horford Bos - PF,C	6.8/12.8	0.536	0.8/0.9	0.909	1.2	15.7	8.6	5.2	1.3	1.8	1.4
+Pascal Siakam Tor - PF	7.9/15.1	0.523	4.7/6.1	0.77	1.6	22.1	6.9	2.8	1	0.5	2
+Larry Nance Jr. Cle - PF,C	4.0/8.5	0.473	1.1/1.9	0.571	0.7	9.8	10.9	2.5	1.1	0.6	1.5
+Dewayne Dedmon Atl - C	4.5/8.5	0.527	1.8/2.1	0.852	1.7	12.4	6.2	1.1	1	1.6	1.3
+Clint Capela Hou - PF,C	5.0/8.5	0.588	0.0/0.0	-	0	10	13	0	0.5	1	1.5
+Gordon Hayward Bos - SG,SF	4.0/8.2	0.489	2.0/2.3	0.88	1.2	11.2	4.5	3.5	0.9	0.7	1.6
+Trevor Ariza Was - SG,SF	5.2/11.8	0.435	1.8/2.7	0.686	2.2	14.3	4.8	4.2	1.3	0.2	1.3
+Darren Collison Ind - PG,SG	5.2/9.9	0.519	2.3/2.5	0.909	1.3	13.9	3	7.1	1	0	1.8
+Draymond Green GS - PF,C	2.5/5.6	0.446	1.3/2.1	0.619	0.6	6.9	6	7	1.3	1.3	2.3</textarea><br>
     <button onclick="injestData()">Ingest</button>
   </div>
   <div id="myTeamAddNewPlayerContainer">
-  <textarea id="myTeamAddNewPlayer" rows="2" cols="160"></textarea>
+  <textarea id="myTeamAddNewPlayer" rows="2" cols="177"></textarea>
     <br>
     <button onclick='addNewPlayers(true)'>Add player(s)</button>
   </div>
@@ -45,7 +57,27 @@
     </tr>
     </tbody>
   </table>
+  <br>
 
+  <!--CURRENT WEEK MATCHUP-->
+  <div class="wrapper">
+    <span class="header">MATCHUP</span><br>
+
+  <textarea id="matchup" cols="145" rows="2"></textarea>
+  <button onclick="getMatchupData()">Update matchup</button>
+  <table id="currentMatchup" class="teamSaved">
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+<div id="projectionWrapper" class="wrapper">
+  <span class="header">PROJECTIONS</span>
+  <table id="projection" class="teamSaved">
+      <tbody>
+      </tbody>
+  </table>
+</div>
+  <br>
   <!--OTHER TEAM-->
   <table id="otherTeamSaved" class="teamSaved">
     <tbody>
@@ -66,13 +98,26 @@
     </tr>
     </tbody>
   </table>
+  <br></br>
 
   <div id="otherTeamContainer">
-    <textarea id="otherTeamvalues" rows="15" cols="160"></textarea><br>
+    <textarea id="otherTeamvalues" rows="15" cols="177">Luka Doncic Dal - PG,SG,SF	8.4/19.2	0.439	5.1/7.4	0.687	2.9	24.9	9.2	7.2	0.4	0.2	3.4
+Jamal Murray Den - PG,SG	5.5/13.7	0.402	1.2/1.2	1	2.3	14.5	3	5.8	1.2	0.3	1.8
+Malik Beasley Den - PG,SG	7.3/13.4	0.54	1.7/1.9	0.87	3.2	19.3	2.3	1.3	0.9	0	0.8
+Joe Ingles Uta - SG,SF	4.5/9.1	0.495	1.7/1.8	0.944	2.8	13.5	3.5	5.1	1	0.1	2.1
+Marvin Williams Cha - SF,PF	4.4/9.6	0.461	0.8/1.0	0.833	1.8	11.5	6.3	1.3	0.8	0.8	0.4
+Bojan Bogdanovic Ind - SG,SF	7.6/15.0	0.508	2.6/3.4	0.773	2.3	20.2	3.7	2.2	0.7	0	1.8
+Kevin Love Cle - PF,C	5.0/10.8	0.465	3.8/4.0	0.938	2.8	16.5	8.3	0.8	0.3	0.3	2.5
+Nikola Jokic Den - PF,C	8.5/17.0	0.503	4.7/5.5	0.867	0.9	22.7	12.3	8.1	1.6	0.3	3.5
+Derrick Rose Min - PG	6.8/14.0	0.486	3.4/3.6	0.944	0	17	2	4.4	1	0.2	1.8
+Jayson Tatum Bos - SF,PF	6.3/13.0	0.481	3.0/3.3	0.9	1.3	16.8	6.5	2	1.1	1.2	1.1
+Jeremy Lamb Cha - SG,SF	5.3/12.4	0.423	2.7/3.0	0.889	1.2	14.3	5.3	1.7	1.2	0.3	0.8
+Khris Middleton Mil - SG,SF	6.3/13.6	0.46	2.4/2.8	0.879	2	16.9	6.7	4.5	0.8	0.1	2.5
+Nikola Mirotic Mil - SF,PF	5.6/12.5	0.452	2.5/3.0	0.842	2.6	16.4	8	1.1	0.6	0.8	1.1</textarea><br>
     <button onclick="injestData(false)">Ingest</button>
   </div>
   <div id="otherTeamAddNewPlayerContainer">
-    <textarea id="otherTeamAddNewPlayer" rows="2" cols="160"></textarea>
+    <textarea id="otherTeamAddNewPlayer" rows="2" cols="177"></textarea>
     <br>
     <button onclick='addNewPlayers(false)'>Add player(s)</button>
   </div>

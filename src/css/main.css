@@ -277,10 +277,14 @@ textarea {
     }
 }
 
+.boldText{
+    font-weight: bold;
+}
+
 
 .teamSaved tr td{
     padding: 10px;
-    text-align: right;
+    text-align: left;
 }
 .teamSaved tr td.playerName{
     width: 260px;
@@ -429,4 +433,26 @@ textarea {
 }
 .teamSaved{
     padding-top: 20px;
+}
+
+.wrapper{
+    border: 1px solid black !important;
+    width: 1077px;
+    margin-bottom: 20px;
+}
+span.header{
+    display: block;
+    margin: 10px;
+}
+
+#matchup{
+    margin: 10px;
+}
+
+#projectionWrapper table{
+    font-size: large;
+}
+
+#projectionWrapper {
+    border: 3px solid black !important;
 }
