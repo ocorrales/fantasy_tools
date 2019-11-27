@@ -456,3 +456,24 @@ span.header{
 #projectionWrapper {
     border: 3px solid black !important;
 }
+
+
+#projection thead {
+    color: gray;
+}
+
+#projection tbody:before {
+    content:"@";
+    display:block;
+    line-height:10px;
+    text-indent:-99999px;
+}
+
+#projection #projection_team {
+    text-align: left;
+    padding-left: 10px;
+}
+
+#projection tbody tr td.games{
+    font-size: 30px;
+}
