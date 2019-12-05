@@ -296,6 +296,7 @@ textarea {
 .teamSaved tr td.fgTotals
 {
     width: 88px;
+    color: lightgray;
 }
 
 .teamSaved tr td.fgPercent
@@ -306,6 +307,7 @@ textarea {
 .teamSaved tr td.ftTotals
 {
     width: 88px;
+    color: lightgray;
 }
 
 .teamSaved tr td.ftPercent
@@ -477,3 +479,36 @@ span.header{
 #projection tbody tr td.games{
     font-size: 30px;
 }
+
+.result100PercentWin{
+    background-color: #7CAA54;
+}
+
+.result75PercentWin{
+    background-color: #B0CE94;
+}
+
+.result50PercentWin{
+    background-color: #CBDFB8;
+}
+
+.result25PercentWin{
+    background-color: #E4EEDC;
+}
+
+.result100PercentDefeated{
+    background-color: #DF8344;
+}
+
+.result75PercentDefeated{
+    background-color: #EBB28B;
+ }
+
+.result50PercentDefeated{
+    background-color: #F2CDB1;
+}
+
+.result25PercentDefeated{
+    background-color: #FAE5D8;
+}
+

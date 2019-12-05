@@ -373,8 +373,8 @@ function calculateProjectionResults(){
         blocksRatio: parseFloat((myTeamProjection.blocks / otherTeamProjection.blocks).toFixed(2)),
         tosRatio: parseFloat((myTeamProjection.tos / otherTeamProjection.tos).toFixed(2)),
 
-        fgPercentDifference: parseFloat((myTeamProjection.fgPercent - otherTeamProjection.fgPercent).toFixed(2)),
-        ftPercentDifference: parseFloat((myTeamProjection.ftPercent - otherTeamProjection.ftPercent).toFixed(2)),
+        fgPercentDifference: parseFloat((myTeamProjection.fgPercent - otherTeamProjection.fgPercent).toFixed(3)),
+        ftPercentDifference: parseFloat((myTeamProjection.ftPercent - otherTeamProjection.ftPercent).toFixed(3)),
         triplesDifference: parseFloat((myTeamProjection.triples - otherTeamProjection.triples).toFixed(2)),
         pointsDifference: parseFloat((myTeamProjection.points - otherTeamProjection.points).toFixed(2)),
         reboundsDifference: parseFloat((myTeamProjection.rebounds - otherTeamProjection.rebounds).toFixed(2)),
@@ -558,4 +558,288 @@ function printProjectionResults(){
     if(projectionTotals.tosRatio > 1){
         otherTeamTr.find("td.tos").addClass("boldText");
     }
+
+    colorCategories(myTeamTr);
+}
+
+function colorCategories(myTeamTr){
+    myTeamTr.find("td.fgPercent").addClass(getCssClassForFGPercentage());
+    myTeamTr.find("td.ftPercent").addClass(getCssClassForFTPercentage());
+    myTeamTr.find("td.triples").addClass(getCssClassForTriples());
+    myTeamTr.find("td.points").addClass(getCssClassForPoints());
+    myTeamTr.find("td.rebounds").addClass(getCssClassForRebounds());
+    myTeamTr.find("td.assists").addClass(getCssClassForAssists());
+    myTeamTr.find("td.steals").addClass(getCssClassForSteals());
+    myTeamTr.find("td.blocks").addClass(getCssClassForBlocks());
+    myTeamTr.find("td.tos").addClass(getCssClassForTos());
+}
+
+function getCssClassForFGPercentage(){
+    fgPercentDifference = projectionTotals.fgPercentDifference;
+
+    if(fgPercentDifference > 0.050)
+        return 'result100PercentWin';
+
+    if(fgPercentDifference > 0.030)
+        return 'result75PercentWin';
+
+    if(fgPercentDifference > 0.010)
+        return 'result50PercentWin';
+
+    if(fgPercentDifference > 0.002)
+        return 'result25PercentWin';
+
+    if(fgPercentDifference < -0.050)
+        return 'result100PercentDefeated';
+
+    if(fgPercentDifference < -0.030)
+        return 'result75PercentDefeated';
+
+    if(fgPercentDifference < -0.010)
+        return 'result50PercentDefeated';
+
+    if(fgPercentDifference < -0.002)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForFTPercentage(){
+    ftPercentDifference = projectionTotals.ftPercentDifference;
+
+    if(ftPercentDifference > 0.050)
+        return 'result100PercentWin';
+
+    if(ftPercentDifference > 0.030)
+        return 'result75PercentWin';
+
+    if(ftPercentDifference > 0.010)
+        return 'result50PercentWin';
+
+    if(ftPercentDifference > 0.002)
+        return 'result25PercentWin';
+
+    if(ftPercentDifference < -0.050)
+        return 'result100PercentDefeated';
+
+    if(ftPercentDifference < -0.030)
+        return 'result75PercentDefeated';
+
+    if(ftPercentDifference < -0.010)
+        return 'result50PercentDefeated';
+
+    if(ftPercentDifference < -0.002)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForTriples(){
+    triplesDifference = projectionTotals.triplesDifference;
+
+    if(triplesDifference > 30)
+        return 'result100PercentWin';
+
+    if(triplesDifference > 20)
+        return 'result75PercentWin';
+
+    if(triplesDifference > 10)
+        return 'result50PercentWin';
+
+    if(triplesDifference > 2)
+        return 'result25PercentWin';
+
+    if(triplesDifference < -30)
+        return 'result100PercentDefeated';
+
+    if(triplesDifference < -20)
+        return 'result75PercentDefeated';
+
+    if(triplesDifference < -10)
+        return 'result50PercentDefeated';
+
+    if(triplesDifference < -2)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForPoints(){
+    pointsDifference = projectionTotals.pointsDifference;
+
+    if(pointsDifference > 100)
+        return 'result100PercentWin';
+
+    if(pointsDifference > 70)
+        return 'result75PercentWin';
+
+    if(pointsDifference > 40)
+        return 'result50PercentWin';
+
+    if(pointsDifference > 10)
+        return 'result25PercentWin';
+
+    if(pointsDifference < -100)
+        return 'result100PercentDefeated';
+
+    if(pointsDifference < -70)
+        return 'result75PercentDefeated';
+
+    if(pointsDifference < -40)
+        return 'result50PercentDefeated';
+
+    if(pointsDifference < -10)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForRebounds(){
+    difference = projectionTotals.reboundsDifference;
+
+    if(difference > 50)
+        return 'result100PercentWin';
+
+    if(difference > 30)
+        return 'result75PercentWin';
+
+    if(difference > 15)
+        return 'result50PercentWin';
+
+    if(difference > 1)
+        return 'result25PercentWin';
+
+    if(difference < -50)
+        return 'result100PercentDefeated';
+
+    if(difference < -30)
+        return 'result75PercentDefeated';
+
+    if(difference < -15)
+        return 'result50PercentDefeated';
+
+    if(difference < -1)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForAssists(){
+    difference = projectionTotals.assistsDifference;
+
+    if(difference > 50)
+        return 'result100PercentWin';
+
+    if(difference > 30)
+        return 'result75PercentWin';
+
+    if(difference > 15)
+        return 'result50PercentWin';
+
+    if(difference > 1)
+        return 'result25PercentWin';
+
+    if(difference < -50)
+        return 'result100PercentDefeated';
+
+    if(difference < -30)
+        return 'result75PercentDefeated';
+
+    if(difference < -15)
+        return 'result50PercentDefeated';
+
+    if(difference < -1)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForSteals(){
+    difference = projectionTotals.stealsDifference;
+
+    if(difference > 25)
+        return 'result100PercentWin';
+
+    if(difference > 15)
+        return 'result75PercentWin';
+
+    if(difference > 7)
+        return 'result50PercentWin';
+
+    if(difference > 1)
+        return 'result25PercentWin';
+
+    if(difference < -25)
+        return 'result100PercentDefeated';
+
+    if(difference < -15)
+        return 'result75PercentDefeated';
+
+    if(difference < -7)
+        return 'result50PercentDefeated';
+
+    if(difference < -1)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForBlocks(){
+    difference = projectionTotals.blocksDifference;
+
+    if(difference > 15)
+        return 'result100PercentWin';
+
+    if(difference > 10)
+        return 'result75PercentWin';
+
+    if(difference > 4)
+        return 'result50PercentWin';
+
+    if(difference > 1)
+        return 'result25PercentWin';
+
+    if(difference < -15)
+        return 'result100PercentDefeated';
+
+    if(difference < -10)
+        return 'result75PercentDefeated';
+
+    if(difference < -4)
+        return 'result50PercentDefeated';
+
+    if(difference < -1)
+        return 'result25PercentDefeated';
+
+    return '';
+}
+
+function getCssClassForTos(){
+    difference = projectionTotals.tosDifference;
+
+    if(difference > 30)
+        return 'result100PercentDefeated';
+
+    if(difference > 20)
+        return 'result75PercentDefeated';
+
+    if(difference > 10)
+        return 'result50PercentDefeated';
+
+    if(difference > 1)
+        return 'result25PercentDefeated';
+
+    if(difference < -30)
+        return 'result100PercentWin';
+
+    if(difference < -20)
+        return 'result75PercentWin';
+
+    if(difference < -10)
+        return 'result50PercentWin';
+
+    if(difference < -1)
+        return 'result25PercentWin';
+
+    return '';
 }
